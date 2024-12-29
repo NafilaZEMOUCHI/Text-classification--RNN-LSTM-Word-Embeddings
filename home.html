@@ -10,41 +10,57 @@
   </head>
 
   <body>
-    <div>
-      <h1>Article classification by domain using RNN LSTM</h1>
-    </div>
+    <nav>
+      <img id="usthb-logo" src="usuthb.png" alt="" />
+      <span id="title">Article Classification using LSTM-RNN</span>
+      <img id="rnn" src="rnn.png" alt="" />
+    </nav>
+
     <span id="main-container">
       <span id="classification-section">
         <span id="text-section">
           <fieldset>
+            <legend>Insert the texte you want to classify</legend>
             <textarea
               id="text-input"
               rows="4"
               cols="50"
-              placeholder="write here..."
+              placeholder="type here..."
               dir="ltr"
             ></textarea>
             <span id="buttons">
               <button onclick="classifyText()">Classify</button>
-              <button onclick="clearText()">Undo</button>
+              <button id="clear" onclick="clearText()">Undo</button>
             </span>
           </fieldset>
         </span>
         <span id="file-upload-section">
           <form id="file-upload-form">
             <fieldset>
+              <legend>Upload the file you want to classify</legend>
               <span id="form-group">
-                <input
-                  type="file"
-                  id="file"
-                  title="upload"
-                  accept=".txt,.pdf,.doc,.docx"
-                />
-
-                <button type="button" onclick="classifyAndDownload()">
-                  Classify
-                </button>
+                <input type="file" id="file" accept=".txt,.pdf,.doc,.docx" />
+                <span id="icons-list">
+                  <img
+                    class="icons"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAABz0lEQVR4nO3WTUsCURQG4PlvCpUwKEooFIZkCyly1S4IhBAMXIu0tJ0rwaCFYCRN6oxmDZZ9YEVFVhNORl9D88bcVm1C8V67i3nhwDDM4uGce4YrCHYYRXI4QKvK4+MyEyCNSA4H6n6/WXa5ytwCPxUF9UDALE9MKFwC0WrRR9IGgjaSBRA0kayAoIVkCQQNJGsghkXSBEp91L8B+4kNtHKWSEAJBPDaboO7Dhq6jqrHg8t0GteZDKdAtxtX6+t8Aq1Y423MzkLb2QGXwJNY7Ofmoml8Ah8KBSh+/8C4kQEvUilITiefWwzTJGfwPJnE8fIyf0CtVMLhwgJMw0Btehp6rcYXUI1G8VgskudutUq6OciyMAU+qyrp2tfHB3rNJjr5PPZDIdSDQTSXlki1VlbI//G90xkt0NB1HM7PQ/Z6URFFNObmcLa2huuNDZzG4+TdbTYLbXubLFF9ZmY0wLebG5yurmJvbAyNcBhPu7swer3fH5km6aY8OYmDSIScUXVxkT2wK8uQfT5yOaiIIl6sy+cfsRand3RExm89MwfWpqbQ2dwk47rf2gKNUAVao7XGdpfLUcFRB7KIZAOHjN3BYWN38N86OMoS7Ahs8g3oOdksI4FLUwAAAABJRU5ErkJggg=="
+                    alt="pdf"
+                  />
+                  <img
+                    class="icons"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACMUlEQVR4nGNgGAWjgLZAsuzSf1pgibJLHUPWA0atN+jnCUkaeOD0kx//Tdro5AlJGnjg8ae/9POEJI08QDdPSNLQA4/p4Qlae+AxrT1BDw88pqUn6OWBx7TyBD098JgWnqC3Bx6jeWJQeoAUzDDqgbLRGPg/moQoAaNJqGw0CVEGCIXgvmvv/5998AmMDVuuwcVXnHoDFjtx9+N/2YrLcPE9V7GrlxyoegDkoF+/foFxzNx7YDG5ysv/P3/7CRd3nXALLK7VcBUu9ubT9//S5YOgIuve+QzuqPbtz8BiXpNvw8VAuGLtY7B4yIy7cLG9194Pjpo4dt49uKM2nH8LFqve8ATFA6tOvwGL125EiPfuejY4PKDTeA3uqFvPv4DF1px5g+KBOy+/gsWXnXwNFwN5XHIweACE7778CnbUj5+//ivXXAE7GMT/+h2RD/Sarv0/9+ATnG/QfG3weGDd2bcoIQtjI4d48sL7/79AM/aD198GV2u0Dilt77j8Ds52m3Dr/8evPzDEYXlFcrB4wHcqotT5/uMnSjF58OYHFHEQbtz8dHB5QLH6Ckp6B+FdV96B5XqQilkYDpx+Z3B5QLLs0v/zDxEZFLlOiJyDyBOwjK5ae2XweWDekVcoDg2eAQlltborKMnn0uPPRDtekp4eyFvxEO7Ibz9+/lepQYTyhYef4XKLjr0anB6QpBFmGPVA2WgM/B9NQpSA0SRUNpqEKAOjSahsgJPQKBgFDHgBAJeSBw0Mc0kLAAAAAElFTkSuQmCC"
+                    alt="word"
+                  />
+                  <img
+                    class="icons"
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB4UlEQVR4nO2YyyuFQRjGf8il3C+FlEiyociKLCxOSin/gLWVjSILG9lJOf8Bm8OCoigrl42kKFGkJLkUlv4Bn0496kvnKMfMnPNpnpq+d96ZeZ95mre5fOARLQSWyg5Q/B+EBMAuUOJaiEmExRwCZUajZ0HIq74HQKlhDqdCOoAn2UdAhWGelKS2YrYAd6qfAbWGuVKS2orZDNzKdw7UGeZLSWorZgNwJf810BhVIUnUA5dquwGaXJDailkDnKr9Hmh1QWorZhVwoj4PQJsLUlsxK4Fj9XsE2l2Q2opZCuyHDs9OF6SZxPxteTNBahJ/uWjmlJCszCPwQswi8Csi+NSKWmoVATMpygAwITt5SucBU8Ak0J9mzE/vd+tCytPs93NAQvYY0C17E5hNM6Y6m0IKgXEgrn4XqvcCQ/JtANOyR4Ee9bmQL676T7+HnO1aMfXbDvny9SZ/B/Z0xUgK/8K2xsQMzsOKkCQW5P8Alr61RUpILBRjMMpCFkMx5qMqJB941gPpRXZBFIUMhVZiWfZIFIUk5OsDhmVv5bqQLmBdJ/RXWq1ITIG23VVgLXRezGhMl8F5pIW/NBpG4FdE8KllGIFPLcGnlmEEPrUEn1qGEfjUMvDn3EbJGP9GiAeO8Qmj9a2OsfjIqgAAAABJRU5ErkJggg=="
+                    alt="txt"
+                  />
+                </span>
               </span>
+              <button type="button" onclick="classifyAndDownload()">
+                Classify
+              </button>
             </fieldset>
           </form>
         </span>

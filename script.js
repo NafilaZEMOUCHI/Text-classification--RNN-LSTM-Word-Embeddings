@@ -39,7 +39,13 @@ function classifyText() {
           {
             label: "Categories",
             data: values,
-            backgroundColor: "blue",
+            backgroundColor: [
+              "rgb(223, 131, 131)", // Bar 1
+              "rgb(108, 177, 223)", // Bar 2
+              "rgb(171, 247, 136)", // Bar 3
+              "rgb(215, 145, 218)", // Bar 4
+              "rgb(253, 255, 113)", // Bar 4
+            ],
           },
         ],
       };
