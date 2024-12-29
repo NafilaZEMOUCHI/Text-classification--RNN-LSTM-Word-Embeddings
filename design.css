@@ -1,0 +1,119 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 1%;
+    box-sizing: border-box;
+    border: none;
+}
+
+
+/* Main container styling */
+#main-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    /* Horizontal layout */
+    justify-content: space-between;
+    /* Space between sections */
+    align-items: flex-start;
+    /* Stretch sections to match height */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* Prevent scrolling */
+}
+
+/* Classification section styling */
+#classification-section {
+    flex: 1;
+    /* Takes equal space with the result section */
+    padding: 10px;
+
+    border-right: 1px solid #ccc;
+    /* Light gray background */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Content starts at the top */
+    align-items: flex-start;
+    width: 40vw;
+}
+
+#classification-section #text-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+
+    border: 1px solid #ccc;
+}
+
+#classification-section textarea {
+    border-bottom: 1px solid #ccc;
+    width: 40vw;
+    resize: vertical;
+    margin-bottom: 10px;
+    border: 0.1 solid gray;
+}
+
+#classification-section button {
+    margin-right: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#classification-section button:hover {
+    background-color: #0056b3;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+#file-upload-section {
+    margin-top: 50px;
+    width: 100%;
+
+
+    border: 1px solid #ccc;
+}
+
+#file-upload-section fieldset {
+    display: flex;
+    justify-content: flex-start;
+    width: 40vw;
+}
+
+#file-upload-section fieldset button {
+    margin-left: 15vw;
+    width: 10vw;
+}
+
+
+
+
+
+
+/* Results section styling */
+#resultSection {
+    margin-top: 20px;
+    flex: 1;
+    /* Takes equal space with the classification section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    /* White background */
+    padding: 20px;
+    width: 4vw;
+}
+
+#histogramCanva {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+}

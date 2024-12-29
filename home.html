@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="design.css" />
+    <title>Classification de Textes</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <h1>Article classification by domain using RNN LSTM</h1>
+    </div>
+    <span id="main-container">
+      <span id="classification-section">
+        <span id="text-section">
+          <fieldset>
+            <textarea
+              id="text-input"
+              rows="4"
+              cols="50"
+              placeholder="write here..."
+              dir="ltr"
+            ></textarea>
+            <span id="buttons">
+              <button onclick="classifyText()">Classify</button>
+              <button onclick="clearText()">Undo</button>
+            </span>
+          </fieldset>
+        </span>
+        <span id="file-upload-section">
+          <form id="file-upload-form">
+            <fieldset>
+              <span id="form-group">
+                <input
+                  type="file"
+                  id="file"
+                  title="upload"
+                  accept=".txt,.pdf,.doc,.docx"
+                />
+
+                <button type="button" onclick="classifyAndDownload()">
+                  Classify
+                </button>
+              </span>
+            </fieldset>
+          </form>
+        </span>
+      </span>
+
+      <span id="resultSection">
+        <canvas id="histogramCanva"></canvas>
+      </span>
+    </span>
+    <script src="script.js"></script>
+  </body>
+</html>
